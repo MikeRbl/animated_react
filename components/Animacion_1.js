@@ -1,30 +1,30 @@
-import { useEffect, useState,StyleSheet } from 'react';
-import { Text, View, Animated } from 'react-native';
+import { View, Text, Animated, StyleSheet } from 'react-native';
+import React, {useEffect, useState} from 'react';
 
-const Animacion_1 = () => {
+const Animacion_2 = () => { // Nombre corregido
     const [animacion] = useState(new Animated.Value(0))
 
     useEffect(()=>{
         Animated.timing(animacion,{
-            toValue:1, //el valor al que va a llegar 
-            duraion:500 // tiempo en milisegundos
+            toValue: 450, 
+            duration: 10000, // Corregido
+            useNativeDriver: false // Requerido en false para animar 'width'
         }).start();
     },[])
 
-    return (
+    return(
         <Animated.View
-        style={{opacity:animacion}}>
-            <Text style = {styles.texto}> Animacion 1</Text>
+            style={[styles.caja, {width: animacion}]}> {/* Sintaxis de arreglo corregida */}
         </Animated.View>
     )
 }
 
 const styles = StyleSheet.create({
-    texto:{
-        fontsize:20,
-        textAligne:'center'
+    caja:{
+        width: 100,
+        height: 100,
+        backgroundColor: 'cornflowerblue'
     }
-
 })
 
-export default Animacion_1
+export default Animacion_2; // Exportación agregada
